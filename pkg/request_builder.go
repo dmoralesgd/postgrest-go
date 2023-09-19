@@ -347,7 +347,8 @@ func (b *SelectRequestBuilder) OrderBy(column, direction string) *SelectRequestB
 
 // Range sets the range of rows to be returned for the SELECT request.
 func (b *SelectRequestBuilder) Range(from, to int) *SelectRequestBuilder {
-	b.params.Set("range", fmt.Sprintf("%d-%d", from, to))
+	b.header.Set("Range-Unit", "items")
+	b.params.Set("Range", fmt.Sprintf("%d-%d", from, to))
 	return b
 }
 
