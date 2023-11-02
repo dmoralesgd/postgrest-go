@@ -204,6 +204,16 @@ func (b *FilterRequestBuilder) Filter(column, operator, criteria string) *Filter
 	return b
 }
 
+// Or adds the filters string inside or to the request
+func (b *FilterRequestBuilder) Or(filters, foreignTable string) *FilterRequestBuilder {
+	if foreignTable != "" {
+		b.params.Add(foreignTable+".or", fmt.Sprintf("(%s)", filters))
+	} else {
+		b.params.Add(foreignTable+"or", fmt.Sprintf("(%s)", filters))
+	}
+	return b
+}
+
 // Eq adds an equality filter condition to the request.
 func (b *FilterRequestBuilder) Eq(column, value string) *FilterRequestBuilder {
 	return b.Filter(column, "eq", SanitizeParam(value))
