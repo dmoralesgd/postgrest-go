@@ -137,7 +137,7 @@ func (b *QueryRequestBuilder) ExecuteWithContext(ctx context.Context, r interfac
 		return err
 	}
 
-	req.URL.RawQuery = query
+	req.URL.RawQuery = url.QueryEscape(query)
 
 	req.Header = b.client.Headers()
 
