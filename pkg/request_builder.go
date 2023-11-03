@@ -131,13 +131,9 @@ func (b *QueryRequestBuilder) ExecuteWithContext(ctx context.Context, r interfac
 	if err != nil {
 		return err
 	}
-	query, err := url.QueryUnescape(b.params.Encode())
+	query := b.params.Encode()
 
-	if err != nil {
-		return err
-	}
-
-	req.URL.RawQuery = url.QueryEscape(query)
+	req.URL.RawQuery = query
 
 	req.Header = b.client.Headers()
 
