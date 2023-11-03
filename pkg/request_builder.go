@@ -360,7 +360,7 @@ func (b *SelectRequestBuilder) Range(from, to int) *SelectRequestBuilder {
 
 // SingleRow sets the single row behavior for the SELECT request.
 func (b *SelectRequestBuilder) SingleRow() *SelectRequestBuilder {
-	b.params.Set("single-row", "true")
+	b.header.Set("Accept", "application/vnd.pgrst.object+json")
 	return b
 }
 
